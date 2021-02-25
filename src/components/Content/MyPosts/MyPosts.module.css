@@ -1,0 +1,5 @@
+.button {
+    box-shadow: 0px 0px 36px #c80de0;
+    transition: all 1s ease-in-out;
+    margin-bottom: 10px;
+}
