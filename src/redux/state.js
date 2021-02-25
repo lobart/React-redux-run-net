@@ -12,6 +12,11 @@ let store = {
             {post: 'Vyshe Ruki!'},
             {post : 'Suki Blyadi!'}
         ],
+        messagesData: [
+            {message: 'Hello!'},
+            {message: 'Salut!'},
+            {message: 'Ty zdes!'},
+        ],
         newPostText: 'input New Post!'
 
     },
@@ -21,26 +26,29 @@ let store = {
     subscribe(observer){
         this._subscriber=observer;
     },
-    getState() {
-        return(this._state);
-    },
-    addDialog(dialog){
-        let newDial = {
-            id: 4,
-            name : dialog
+    dispatch(action){
+        if (action.type === 'ADD-POST'){
+            let newPost = {
+                post: action.text
+            }
+            this._state.contentDataPosts.push(newPost);
+            this._subscriber(this);
+
+        } else if (action.type === 'UPDATE-TEXT-POST'){
+            this._state.newPostText = action.text;
+            this._subscriber(this);
+
+        } else if (action.type === 'ADD-DIALOG'){
+            let newDial = {
+                id: 4,
+                name : action.dialog
+            }
+            this._state.dialogsData.push(newDial)
+        } else if (action.type === 'GET-STATE'){
+            return(this._state);
         }
-        this._state.dialogsData.push(newDial)
-    },
-    addPost(posta){
-        let newPost = {
-            post: posta
-        }
-        this._state.contentDataPosts.push(newPost);
-        this._subscriber(this);
-    },
-    updateTextPost(text){
-        this._state.newPostText = text;
-        this._subscriber(this)}
+
+    }
 }
 
 export default store;

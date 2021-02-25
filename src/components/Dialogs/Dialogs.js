@@ -5,19 +5,18 @@ import Dialog from "./Dialog/Dialog";
 
 
 const Dialogs = (props) => {
-    let DialogDataMap = props.dialogs.map( (el)=>{
-        return(
-            <Dialog name = {el.name}/>
+    let DialogDataMap = props.store.dispatch({type: 'GET-STATE'}).dialogsData.map( (el)=> {
+        return (
+            <Dialog name={el.name}/>
         )
     }
-
     )
     return(
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 {DialogDataMap}
             </div>
-            <Messages/>
+            <Messages store = {props.store}/>
         </div>
     );
 }

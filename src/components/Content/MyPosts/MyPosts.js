@@ -4,7 +4,7 @@ import React from "react";
 import store from "../../../redux/state";
 const MyPosts = (props) => {
     console.log(store)
-    let contMap = props.store.getState().contentDataPosts.map( (el)=>{
+    let contMap =  props.store.dispatch({type:'GET-STATE'}).contentDataPosts.map( (el)=>{
         return(
             <Post message = {el.post}/>
         )
@@ -12,15 +12,15 @@ const MyPosts = (props) => {
     let newPostElement  =   React.createRef();
     let addPost = () => {
         let text = newPostElement.current.value;
-        props.store.addPost(text)
+        props.store.dispatch({type: 'ADD-POST', text:text})
     }
     let onPostChange = () => {
-        props.store.updateTextPost(newPostElement.current.value)
+        props.store.dispatch({type:'UPDATE-TEXT-POST', text: newPostElement.current.value});
     }
     return (
         <ul>
             <div>
-            <textarea onChange={onPostChange} ref = {newPostElement} value={props.store.newPostText}></textarea>
+            <textarea onChange={onPostChange} ref = {newPostElement} value={props.store.dispatch({type:'GET-STATE'}).newPostText}></textarea>
             </div>
             <div>
             <button className={s.button} onClick={ addPost}>Add post</button>

@@ -14,7 +14,7 @@ const App = (props) => {
         <Nav/>
         {/*<Cont/>*/}
         <div className='site-wrapper-content'>
-            <Route exact path='/dialogs' render={() => <Dialogs dialogs={props.store.getState().dialogsData} />} />
+            <Route exact path='/dialogs' render={() => <Dialogs store = {props.store} />} />
             <Route exact path='/profile' render={() => <Content store = {props.store} />} />
         </div>
       </div>
