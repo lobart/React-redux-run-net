@@ -1,21 +1,22 @@
 import s from './Nav.module.css'
 import {NavLink} from "react-router-dom";
+import Dialog from "../Dialogs/Dialog/Dialog";
+import {getStateAction} from '../../redux/state'
 
-const Nav = () => {
+
+const Nav = (props) => {
+    let NavDataMap = props.store.dispatch(getStateAction()).navData.map( (el)=> {
+            return (
+                <div>
+                    <NavLink to={el.url}>{el.name}</NavLink>
+                </div>
+
+            )
+        }
+    )
     return (
         <nav className={s.nav}>
-            <div>
-                <NavLink to="/profile">Profile</NavLink>
-            </div>
-            <div>
-                <NavLink to="/dialogs">Dialogs</NavLink>
-            </div>
-            <div>
-                <a>Profile</a>
-            </div>
-            <div>
-                <a>About</a>
-            </div>
+            {NavDataMap}
         </nav>
     )
 }

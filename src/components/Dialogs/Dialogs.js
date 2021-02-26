@@ -1,11 +1,11 @@
 import s from './Dialogs.module.css'
 import Messages from './Messages/Messages'
 import Dialog from "./Dialog/Dialog";
-
+import {getStateAction} from '../../redux/state'
 
 
 const Dialogs = (props) => {
-    let DialogDataMap = props.store.dispatch({type: 'GET-STATE'}).dialogsData.map( (el)=> {
+    let DialogDataMap = props.store.dispatch(getStateAction()).dialogsData.map( (el)=> {
         return (
             <Dialog name={el.name}/>
         )

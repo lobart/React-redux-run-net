@@ -4,14 +4,15 @@ import Nav from './components/Nav/Nav'
 import Content from './components/Content/Content'
 import Dialogs from './components/Dialogs/Dialogs'
 import {BrowserRouter, Route} from "react-router-dom"
+import store from "./redux/state";
 
 
 const App = (props) => {
   return(
       <BrowserRouter>
       <div className='site-wrapper'>
-        <Header/>
-        <Nav/>
+          <Header/>
+        <Nav store={props.store}/>
         {/*<Cont/>*/}
         <div className='site-wrapper-content'>
             <Route exact path='/dialogs' render={() => <Dialogs store = {props.store} />} />
