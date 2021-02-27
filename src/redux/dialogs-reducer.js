@@ -1,6 +1,13 @@
 const ADD_DIALOG = 'ADD-DIALOG';
 
-const dialogsReducer = (state, action) => {
+let initialState = {
+    dialogsData:
+        [{"name" : 'Archi', "id":1},
+            {"name" : 'Roma', "id":2},
+            {"name" : 'Lex', "id":3}]
+}
+
+const dialogsReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_DIALOG:
         let newDial = {

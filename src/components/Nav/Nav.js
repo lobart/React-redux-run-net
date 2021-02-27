@@ -1,10 +1,8 @@
-import s from './Nav.module.css'
+import s from './Nav.module.css';
 import {NavLink} from "react-router-dom";
 
-
-
 const Nav = (props) => {
-    let NavDataMap = props.store.getState().navData.map( (el)=> {
+    let NavDataMap = props.navData.map( (el)=> {
             return (
                 <div>
                     <NavLink to={el.url}>{el.name}</NavLink>

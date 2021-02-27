@@ -1,9 +1,10 @@
 import s from './Content.module.css'
-import MyPosts from './MyPosts/MyPosts'
+import MyPostsContainer from "../../redux/MyPosts-container";
+
 const Cont = (props) => {
     return (
         <ul>
-            <MyPosts store = {props.store} />
+            <MyPostsContainer store = {props.store} />
         </ul>
     )
 }

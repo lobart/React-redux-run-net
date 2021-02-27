@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/store";
+import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import React from "react";
