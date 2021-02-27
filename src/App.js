@@ -4,7 +4,7 @@ import Nav from './components/Nav/Nav'
 import Content from './components/Content/Content'
 import Dialogs from './components/Dialogs/Dialogs'
 import {BrowserRouter, Route} from "react-router-dom"
-import store from "./redux/state";
+
 
 
 const App = (props) => {

@@ -1,11 +1,12 @@
 import s from "./MyPosts.module.css";
 import Post from './Post/Post';
 import React from "react";
-import store from "../../../redux/state";
-import {getStateAction, addPostAction, addDialogAction, updateTextPostAction} from '../../../redux/state'
+import {addPostAction, updateTextPostAction} from '../../../redux/post-reducer'
+
+
 const MyPosts = (props) => {
-    console.log(store)
-    let contMap =  props.store.dispatch(getStateAction()).contentDataPosts.map( (el)=>{
+    console.log(props.store.getState().postsPage)
+    let contMap =  props.store.getState().postsPage.contentDataPosts.map( (el)=>{
         return(
             <Post message = {el.post}/>
         )
@@ -21,7 +22,7 @@ const MyPosts = (props) => {
     return (
         <ul>
             <div>
-            <textarea onChange={onPostChange} ref = {newPostElement} value={props.store.dispatch(getStateAction()).newPostText}></textarea>
+            <textarea onChange={onPostChange} ref = {newPostElement} value={props.store.getState().postsPage.newPostText}></textarea>
             </div>
             <div>
             <button className={s.button} onClick={ addPost}>Add post</button>
