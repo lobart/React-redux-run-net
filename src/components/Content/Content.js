@@ -1,5 +1,5 @@
 import s from './Content.module.css'
-import MyPostsContainer from "../../redux/MyPosts-container";
+import MyPostsContainer from "./MyPosts/MyPosts-container";
 
 const Cont = (props) => {
     return (

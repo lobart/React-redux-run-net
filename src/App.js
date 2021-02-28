@@ -1,9 +1,11 @@
 import './App.css';
 import Header from './components/Header/Header'
 import Content from './components/Content/Content'
-import Dialogs from './components/Dialogs/Dialogs'
-import NavContainer from './redux/Nav-container'
+import NavContainer from './components/Nav/Nav-container'
 import {BrowserRouter, Route} from "react-router-dom"
+import DialogsContainer from "./components/Dialogs/Dialogs-Conteiner";
+import MessagesContainer from "./components/Dialogs/Messages/Messages-container";
+import UserContainer from "./components/Users/Users-Container";
 
 
 
@@ -15,8 +17,13 @@ const App = (props) => {
         <NavContainer store={props.store}/>
         {/*<Cont/>*/}
         <div className='site-wrapper-content'>
-            <Route exact path='/dialogs' render={() => <Dialogs store = {props.store} />} />
+            <Route exact path='/dialogs' render={() =>
+                <div>
+                    <DialogsContainer store = {props.store} />
+                    <MessagesContainer store = {props.store}/>
+                </div>} />
             <Route exact path='/profile' render={() => <Content store = {props.store} />} />
+            <Route exact path='/users' render={() => <UserContainer/>} />
         </div>
       </div>
       </BrowserRouter>

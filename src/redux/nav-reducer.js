@@ -5,6 +5,7 @@ let initialState = {
         {name: 'Profile', url: '/profile'},
         {name: 'Friends', url: '/friends'},
         {name: 'Competitions', url: '/competitions'},
+        {name: 'Users', url: '/users'}
 
     ]
 }

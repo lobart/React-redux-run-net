@@ -1,10 +1,10 @@
 import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
-import MessagesContainer from "../../redux/Messages-container";
+import MessagesContainer from "./Messages/Messages-container";
 
 
 const Dialogs = (props) => {
-    let DialogDataMap = props.store.getState().dialogsPage.dialogsData.map( (el)=> {
+    let DialogDataMap = props.dialogsData.map( (el)=> {
         return (
             <Dialog name={el.name}/>
         )
@@ -15,9 +15,12 @@ const Dialogs = (props) => {
             <div className={s.dialogsItem}>
                 {DialogDataMap}
             </div>
-            <MessagesContainer store = {props.store}/>
+
         </div>
     );
 }
 
+
+
 export default Dialogs;
+

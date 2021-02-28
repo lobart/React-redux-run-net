@@ -14,8 +14,10 @@ const dialogsReducer = (state = initialState, action) => {
             id: 4,
             name : action.dialog
         }
-        state.dialogsData.push(newDial)
-        return state;
+        let stateCopy = {...state};
+        stateCopy.dialogsData = {...state.dialogsData};
+        stateCopy.dialogsData.push(newDial)
+        return stateCopy;
         default: return state;
     }
 }
