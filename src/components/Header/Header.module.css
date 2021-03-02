@@ -1,8 +1,16 @@
 .header {
     grid-area: h;
+    display: grid;
+    grid-template-areas:
+      'log title ava';
     padding: 10px;
     border-bottom: 2px solid rgba(0,0,0,.05);
     text-align: center;
+}
+.ava {
+    grid-area: ava;
+    height: 50px;
+    weight:50px;
 }
 h3 {
     font-family: 'Merriweather', serif;
@@ -13,6 +21,12 @@ h3 {
     position: relative;
     display: inline-block;
     color: #465457;
+}
+.log {
+    grid-area: log;
+}
+.d1 {
+    grid-area: title;
 }
 .d1 h3 {
     color: #F16246;

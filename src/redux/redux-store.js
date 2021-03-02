@@ -1,16 +1,18 @@
 import {combineReducers, createStore} from "redux";
 import dialogsReducer from "./dialogs-reducer";
-import postReducer from "./post-reducer";
+import profileReducer from "./profile-reducer";
 import messageReducer from "./message-reducer";
 import navReducer from "./nav-reducer";
 import usersReducer from "./user-reducer";
+import headerReducer from "./header-reducer";
 
 let reducers = combineReducers({
     dialogsPage : dialogsReducer,
-    postsPage: postReducer,
+    profilePage: profileReducer,
     messagesPage : messageReducer,
     navPage : navReducer,
-    usersPage : usersReducer
+    usersPage : usersReducer,
+    headerPage : headerReducer
 })
 let store = createStore(reducers);
 window.store = store;
