@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './components/Header/Header'
 import NavContainer from './components/Nav/Nav-container'
 import {BrowserRouter, Route} from "react-router-dom"
 import DialogsContainer from "./components/Dialogs/Dialogs-Conteiner";
@@ -24,7 +23,7 @@ const App = (props) => {
                     <MessagesContainer store = {props.store}/>
                 </div>} />
             <Route path='/profile/:userID?' render={() => <ProfileContainer store = {props.store} />} />
-            <Route exact path='/users' render={() => <UserContainer/>} />
+            <Route exact path='/users' render={() => <UserContainer key='UserContainer' store = {props.store}/>} />
         </div>
       </div>
       </BrowserRouter>

@@ -2,13 +2,16 @@ import React from "react";
 import "./Users.css";
 import UserPhoto from "../../assets/Images/UserPhoto.jpeg";
 import {NavLink} from "react-router-dom";
-import userAPI, {toFollow, toUnFollow} from "../../api/api";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount/props.pageSize);
     let pages = [];
     for (let i=1; i <= pagesCount; i++){
         pages.push(i);
+    }
+    let setPageSize = (size) =>{
+        props.pageSize=size;
+        props.setCurrentPage(props.currentPage);
     }
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
@@ -34,9 +37,9 @@ let Users = (props) => {
             <div className="dropdown">
                 <button onClick={myFunction} className="dropbtn">Количество профилей на странице</button>
                 <div id="myDropdown" className="dropdown-content">
-                    <a href="#">5</a>
-                    <a href="#">10</a>
-                    <a href="#">20</a>
+                    <a  href="#">5</a>
+                    <a  href="#">10</a>
+                    <a  href="#">20</a>
                 </div>
             </div>
             <div>
@@ -59,20 +62,10 @@ let Users = (props) => {
                             </div>
                             <div>
                                 {u.followed ?
-                                    <button onClick={() => {
-                                        userAPI.toUnFollow(u.id).then(data => {
-                                            if(data.resultCode == 0){
-                                                    props.unfollow(u.id)
-                                                }
-                                            })
-                                    }}>Unfollow</button>
-                                    : <button onClick={() => {
-                                        userAPI.toFollow(u.id).then(data => {
-                                            if(data.resultCode == 0){
-                                                props.follow(u.id)
-                                            }
-                                        })
-                                        }}>Follow</button>
+                                    <button disabled={props.followingProgress.some(id => id===u.id)} onClick={()=>{
+                                        props.onUnfollow(u.id)} }>Unfollow</button>
+                                    : <button disabled={props.followingProgress.some(id => id===u.id)} onClick={()=>{
+                                    props.onFollow(u.id)} }>Follow</button>
                                 }
                             </div>
                         </span>

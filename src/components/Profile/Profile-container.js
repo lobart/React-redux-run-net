@@ -10,15 +10,13 @@ let mapStateToProps = (state) => ({
 })
 
 class ProfileContainer extends React.Component{
+    debugger
     componentDidMount() {
-        let uID=null;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true}).then(response => {
-            uID = response.data.data.id;
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + uID).then(response => {
+
+        let uID=this.props.match.params.userID;
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + uID, {withCredentials: true}).then(response => {
                 this.props.setUserProfile(response.data);
             })
-        });
-
     }
 
     render() {
