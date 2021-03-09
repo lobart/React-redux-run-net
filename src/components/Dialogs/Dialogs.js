@@ -10,12 +10,15 @@ const Dialogs = (props) => {
         )
     }
     )
+
     return(
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 {DialogDataMap}
             </div>
-
+            <div>
+                <MessagesContainer store = {props.store}/>
+            </div>
         </div>
     );
 }

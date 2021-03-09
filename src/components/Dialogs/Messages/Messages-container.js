@@ -1,8 +1,7 @@
 import Messages from "./Messages";
 import {addMessageAction, updateTextMessageAction} from "../../../redux/message-reducer";
-import {addPostAction, updateTextPostAction} from "../../../redux/profile-reducer";
 import {connect} from "react-redux";
-import MyPosts from "../../Profile/MyPosts/MyPosts";
+
 
 
 

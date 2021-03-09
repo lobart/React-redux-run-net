@@ -7,7 +7,6 @@ const Nav = (props) => {
                 <div>
                     <NavLink to={el.url}>{el.name}</NavLink>
                 </div>
-
             )
         }
     )
