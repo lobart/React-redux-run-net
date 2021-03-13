@@ -1,6 +1,6 @@
 import authReducer from "./auth-reducer";
 
-const ADD_DIALOG = 'ADD-DIALOG';
+const ADD_DIALOG = 'dialogs/ADD-DIALOG';
 
 let initialState = {
     dialogsData:

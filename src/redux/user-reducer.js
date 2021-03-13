@@ -1,12 +1,12 @@
 import {userAPI,followAPI} from "../api/api";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SETUSERS = 'SETUSERS';
-const SETCURRENTPAGE = 'SETCURRENTPAGE';
-const SETTOTALUSERSCOUNT = 'SETTOTALUSERSCOUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FPROGRESS = 'TOGGLE_IS_FPROGRESS';
+const FOLLOW = 'user/FOLLOW';
+const UNFOLLOW = 'user/UNFOLLOW';
+const SETUSERS = 'user/SETUSERS';
+const SETCURRENTPAGE = 'user/SETCURRENTPAGE';
+const SETTOTALUSERSCOUNT = 'user/SETTOTALUSERSCOUNT';
+const TOGGLE_IS_FETCHING = 'user/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FPROGRESS = 'user/TOGGLE_IS_FPROGRESS';
 
 let initialState = {
     users:[],
@@ -66,33 +66,30 @@ export let setTotalUsersCount = (totalUsersCount) => ({type: SETTOTALUSERSCOUNT,
 export let setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export let setToggleIsFProgress = (isFetching, userID) => ({type: TOGGLE_IS_FPROGRESS, isFetching, userID});
 
-export let getUsers = (pageNumber, pageSize) => { return  (dispatch) => {
+export let getUsers = (pageNumber, pageSize) => { return async (dispatch) => {
     dispatch(setCurrentPage(pageNumber));
     dispatch(setToggleIsFetching(true));
 
-    userAPI.getUsers(pageNumber, pageSize).then(data => {
+    let data = await userAPI.getUsers(pageNumber, pageSize);
         dispatch(setToggleIsFetching(false));
         dispatch(setUsers(data.items));
         dispatch(setTotalUsersCount(data.totalCount))
-    })
 }}
 
-export let onUnfollow = (uID) => { return (dispatch) => {
+export let onUnfollow = (uID) => { return async (dispatch) => {
     dispatch(setToggleIsFProgress(true, uID));
-    followAPI.toUnFollow(uID).then(data => {
+    let data = await followAPI.toUnFollow(uID);
         if(data.resultCode == 0){
             dispatch(unfollow(uID))
         }
         dispatch(setToggleIsFProgress(false, uID));
-    })
 }}
-export let onFollow = (uID) => { return (dispatch) => {
+export let onFollow = (uID) => { return async (dispatch) => {
     dispatch(setToggleIsFProgress(true, uID));
-    followAPI.toFollow(uID).then(data => {
+    let data = await followAPI.toFollow(uID);
         if(data.resultCode == 0){
             dispatch(follow(uID))
         }
         dispatch(setToggleIsFProgress(false, uID));
-    })
 }}
 export default  usersReducer;

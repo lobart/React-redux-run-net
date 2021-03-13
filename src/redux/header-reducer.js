@@ -1,7 +1,7 @@
 import {userAPI} from "../api/api";
 
-const SET_USER_INFO = 'SET_USER_INFO';
-const SET_USER_PHOTO = 'SET_USER_PHOTO';
+const SET_USER_INFO = 'header/SET_USER_INFO';
+const SET_USER_PHOTO = 'header/SET_USER_PHOTO';
 
 let initialState = {
     userData:{
@@ -33,12 +33,10 @@ const headerReducer = (state = initialState, action) => {
 export let setUserInfo = (userData) => ({type:SET_USER_INFO, userData})
 export let setUserPhoto = (userPhoto) => ({type:SET_USER_PHOTO, userPhoto})
 
-export let setProfileHeader = () => (dispatch) => {
-    userAPI.authMe().then(response => {
-        dispatch(setUserInfo(response.data.data));
-        userAPI.getProfile(response.data.data.id).then(response => {
-            dispatch(setUserPhoto(response.photos.small))
-        })
-    })
+export let setProfileHeader = () => async(dispatch) => {
+    let response = await userAPI.authMe();
+    dispatch(setUserInfo(response.data.data));
+    let response_id = await userAPI.getProfile(response.data.data.id);
+    dispatch(setUserPhoto(response_id.photos.small))
 }
 export default headerReducer;

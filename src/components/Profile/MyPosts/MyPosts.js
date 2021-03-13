@@ -27,7 +27,7 @@ const addPostForm =(props) => {
 
 const ReduxPostForm = reduxForm({form: 'dialogsAddPostForm'})(addPostForm);
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
     let contMap =  props.postsData.map( (el)=>{
         return(
             <Post message = {el.post}/>
@@ -45,7 +45,7 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts;
 

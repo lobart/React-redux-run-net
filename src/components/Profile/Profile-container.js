@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getMyProfile, getMyStatus, getProfile, setUserProfile, updateStatus} from "../../redux/profile-reducer";
+import {getStatus, getProfile, setUserProfile, updateStatus} from "../../redux/profile-reducer";
 import {withRouter} from "react-router";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -22,7 +22,7 @@ class ProfileContainer extends React.Component{
         if (!uID) uID=this.props.authUserId;
         console.log("Mount");
         this.props.getProfile(uID);
-        this.props.getMyStatus(uID);
+        this.props.getStatus(uID);
     }
     componentWillUnmount(){
         console.log("Unmount")
@@ -30,6 +30,7 @@ class ProfileContainer extends React.Component{
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevProps.match.params.userID !== this.props.match.params.userID){
             this.props.getProfile(this.props.match.params.userID);
+            this.props.getStatus(this.props.match.params.userID);
         }
     }
     render() {
@@ -45,8 +46,7 @@ export default compose (
     connect(mapStateToProps, {
         setUserProfile,
         getProfile,
-        getMyProfile,
-        getMyStatus,
+        getStatus,
         updateStatus,
         getAuthUserData
     }),
